@@ -11,13 +11,13 @@ for name in ['pg.log', 'pg_vr.log']:
             epochs.append(epoch)
             rewards.append(reward)
    
-    plt.title('Policy Gradients')
-    plt.xlabel('Epochs')
-    plt.ylabel('Rewards')
     if name == 'pg.log':
         plt.plot(epochs[:4000:10], rewards[:4000:10], label='vanilla')
     else:
         plt.plot(epochs[:4000:10], rewards[:4000:10], label='variance reduction')
+plt.title('LunarLander-v2')
+plt.xlabel('Epochs')
+plt.ylabel('Rewards')
 plt.legend()
 plt.savefig('p3_pg.jpg')
 #plt.show()
