@@ -54,7 +54,7 @@ def run(args):
         test(agent, env)
 
     if args.test_dqn:
-        env = Environment('MsPacmanNoFrameskip-v0', args, atari_wrapper=True, test=True)
+        env = Environment('Boxing-v0', args, atari_wrapper=True, test=True)
         from agent_dir.agent_dqn import AgentDQN
         agent = AgentDQN(env, args)
         test(agent, env, total_episodes=50)
