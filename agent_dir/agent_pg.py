@@ -30,7 +30,7 @@ class AgentPG(Agent):
                                action_num= self.env.action_space.n,
                                hidden_dim=64)
         if args.test_pg:
-            self.load('pg.cpt')
+            self.load('pg_vr.cpt')
 
         # discounted reward
         self.gamma = 0.99
