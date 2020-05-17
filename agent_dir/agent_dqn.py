@@ -57,7 +57,7 @@ class AgentDQN(Agent):
         self.online_net = self.online_net.cuda() if use_cuda else self.online_net
 
         if args.test_dqn:
-            self.load('dqn_gamma_0.9')
+            self.load('dqn_gamma_DDQN_boxing_0.99')
 
         # discounted reward
         self.GAMMA = args.dqn_gamma
@@ -133,11 +133,11 @@ class AgentDQN(Agent):
         # 2. You should carefully deal with gamma * max(Q(s_{t+1}, a)) when it
         #    is the terminal state.
         
-        # step 0
+        # step 0: set model mode
         self.online_net.train()
         self.target_net.eval()
 
-        # step 1
+        # step 1: Sample some stored experiences as training examples.
         minibatch = random.sample(self.memory, self.batch_size)
         minibatch = Transition(*zip(*minibatch))
         mask = torch.tensor(
@@ -156,18 +156,21 @@ class AgentDQN(Agent):
         state = torch.cat(minibatch.state).to('cuda' if use_cuda else 'cpu')
         next_state = torch.cat([x for (x, y) in zip(minibatch.next_state, minibatch.done) if not y]).to('cuda' if use_cuda else 'cpu')
 
-        # step 2
+        # step 2: Compute Q(s_t, a) with your model.
         state_action_value = self.online_net(state).gather(1, action)
 
-        # step 3
+        # step 3: Compute Q(s_{t+1}, a) with target model.
+        # DDQN
+        # select action with online_net
         with torch.no_grad():
             next_state_value = torch.zeros((self.batch_size, 1), device='cuda' if use_cuda else 'cpu')
-            next_state_value[mask] = self.target_net(next_state).max(1)[0].unsqueeze(1)
+            next_state_action = self.online_net(next_state).max(1)[1].unsqueeze(1)
+            next_state_value[mask] = self.target_net(next_state).gather(1, next_state_action)
         
-        # step 4
+        # step 4: Compute the expected Q values: rewards + gamma * max(Q(s_{t+1}, a))
         expected_state_action_value = next_state_value * self.GAMMA + reward
         
-        # step 5
+        # step 5: Compute temporal difference loss
         self.optimizer.zero_grad()
         loss = F.smooth_l1_loss(state_action_value, expected_state_action_value)
         loss.backward()
