@@ -57,7 +57,7 @@ class AgentDQN(Agent):
         self.online_net = self.online_net.cuda() if use_cuda else self.online_net
 
         if args.test_dqn:
-            self.load('dqn_gamma_0.9')
+            self.load('dqn_gamma_boxing_0.99')
 
         # discounted reward
         self.GAMMA = args.dqn_gamma
