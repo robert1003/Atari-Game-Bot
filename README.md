@@ -24,6 +24,14 @@ testing DQN:
 If you want to see your agent playing the game,
 * `$ python3 test.py --test_[pg|dqn] --do_render`
 
+## Plot figure
+
+* p1_pg: python3 p1_pg.py
+* p1_dqn: python3 p1_dqn.py
+* p2: python3 p2.py
+* p3 variance reduction: python3 p3_pg.py
+* p3 DDQN: python3 p3_dqn.py
+
 
 ## Code structure
 
