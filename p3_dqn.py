@@ -27,9 +27,9 @@ for name in ['dqn_gamma_boxing_0.99.log', 'dqn_gamma_DDQN_boxing_0.99.log']:
             if i > 0:
                 rewards[i] = np.clip(rewards[i], rewards[i - 1] - 8, rewards[i - 1] + 8)
         '''
-        plt.plot(epochs[:95:2], rewards[:95:2], label='DDQN')
+        plt.plot(epochs[:566:10], rewards[:566:10], label='DDQN')
     else:
-        plt.plot(epochs[:95:2], rewards[:95:2], label='DQN')
+        plt.plot(epochs[:566:10], rewards[:566:10], label='DQN')
 plt.legend()
 plt.title('Boxing-v0')
 plt.xlabel('Epochs')
