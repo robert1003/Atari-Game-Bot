@@ -10,13 +10,13 @@ Please refer to [OpenAI's page](https://github.com/openai/gym) if you have any p
 
 ## How to run :
 training policy gradient:
-* `$ python3 main.py --train_pg`
+* `$ python3 main.py --train_pg --model_name pg --log_name pg.log`
 
 testing policy gradient:
 * `$ python3 test.py --test_pg`
 
 training DQN:
-* `$ python3 main.py --train_dqn`
+* `$ python3 main.py --train_dqn --model_name dqn --log_name dqn.log --dqn_gamma 0.9`
 
 testing DQN:
 * `$ python3 test.py --test_dqn`
