@@ -12,8 +12,15 @@ for i, gamma in enumerate([0.1, 0.3, 0.5, 0.7, 0.9, 0.99]):
             epochs.append(epoch)
             rewards.append(reward)
        
+
     print(len(epochs), len(rewards))
-    axs.plot(epochs[:3500:25], rewards[:3500:25], label='{}'.format(gamma))
+    a1, a2 = [], []
+    for _ in range(len(epochs) - 100):
+        a1.append((_ + 1) * 10)
+        a2.append(sum(rewards[_:_+100]) / 100)
+
+    #axs.plot(epochs[:3500:25], rewards[:3500:25], label='{}'.format(gamma))
+    axs.plot(a1[:3500], a2[:3500], label='{}'.format(gamma))
     axs.set_xlabel('Episode')
     axs.set_ylabel('Rewards')
     axs.legend()
