@@ -84,10 +84,14 @@ class AgentPG(Agent):
         # compute PG loss
         # loss = sum(-R_i * log(action_prob))
         R = torch.zeros(1)
-        loss = 0
-        for reward, log_prob in zip(self.rewards[::-1], self.log_probs[::-1]):
+        dis_rewards = []
+        for reward in self.rewards[::-1]:
             R = self.gamma * R + reward
-            loss = loss - (log_prob * R)
+            dis_rewards.append(R)
+        avg = sum(dis_rewards) / len(dis_rewards)
+        loss = 0
+        for reward, log_prob in zip(dis_rewards, self.log_probs[::-1]):
+            loss = loss - (log_prob * (reward - avg))
         loss /= len(self.rewards)
         self.optimizer.zero_grad()
         loss.backward()
