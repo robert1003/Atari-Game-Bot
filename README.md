@@ -1,5 +1,10 @@
 # ADL HW3
-Please don't revise test.py, environment.py,  atari_wrapper.py,  agent_dir/agent.py
+
+## Homework details
+
+* [Link](https://docs.google.com/presentation/d/12IjcsZVCKjcsHtCRKSJfku3HWlGN4yc9DvCT6XRJZlk/edit?usp=sharing) to the homework slide.
+* [Link](https://youtu.be/cwdiBWjQDk0) to the homework video.
+* [Link](https://drive.google.com/file/d/1Ctf8hVx-JCFTR5p0incL-F5ASPfwLKtP/view?usp=sharing) to the sample code.
 
 ## Installation
 Type the following command to install OpenAI Gym Atari environment.
@@ -31,20 +36,3 @@ If you want to see your agent playing the game,
 * p2: python3 p2.py
 * p3 variance reduction: python3 p3_pg.py
 * p3 DDQN: python3 p3_dqn.py
-
-
-## Code structure
-
-```
-.
-├── agent_dir (all agents are placed here)
-│   ├── agent.py (defined 4 required functions of the agent. DO NOT MODIFY IT)
-│   ├── agent_dqn.py (DQN agent sample code)
-│   └── agent_pg.py (PG agent sample code)
-├── argument.py (you can add your arguments in here. we will use the default value when running test.py)
-├── atari_wrapper.py (wrap the atari environment. DO NOT MODIFY IT)
-├── environment.py (define the game environment in HW3, DO NOT MODIFY IT)
-├── main.py (main function)
-└── test.py (test script. we will use this script to test your agents. DO NOT MODIFY IT)
-
-```
