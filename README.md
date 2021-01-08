@@ -1,4 +1,4 @@
-# ADL HW3
+# Atari Game Bot
 
 ## Homework details
 
