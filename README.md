@@ -1,6 +1,8 @@
 # Atari Game Bot
 
-## Homework details
+This project is a Reinforcement Learning homework of course Applied Deep Learning. I built an Atari game bot with reinforcement learning, specifically policy gradient and deep-Q learning. Spec is given in the following slides and experiment result is in the report.
+
+## Details
 
 * [Link](https://docs.google.com/presentation/d/12IjcsZVCKjcsHtCRKSJfku3HWlGN4yc9DvCT6XRJZlk/edit?usp=sharing) to the homework slide.
 * [Link](https://youtu.be/cwdiBWjQDk0) to the homework video.
